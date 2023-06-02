@@ -3,24 +3,23 @@ kind: Deployment
 metadata:
   name: tech365-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: tech365
-  replicas: 1 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
         app: tech365
     spec:
-      containers: 
+      containers:
       - name: tech365
         image: 585943330578.dkr.ecr.us-east-1.amazonaws.com/tundeimage
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-
+# service type loadbalancer       
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -32,8 +31,8 @@ spec:
   ports:
   - name: http
     port: 80
+    protocol: TCP
     targetPort: 8080
   type: LoadBalancer
   selector:
     app: tech365
-
