@@ -32,7 +32,7 @@ stage('Build') {
 	stage('Push') {
             steps {
                 script{
-                    docker.withRegistry("585943330578.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:myawscredentials") 
+                    docker.withRegistry("https://585943330578.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:myawscredentials") 
 			{
                     app.push("latest")
                     }
